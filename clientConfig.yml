@@ -1,4 +1,8 @@
-server_ip: '' #FTP Server IP
-username: '' #FTP Server Username
-password: '' #FTP Server Password
-backup_folder: '/etc/mcBackup/serverBackups' #FTP Server Minecraft Backup Location
+# FTP Server IP
+server_ip: ''
+# FTP Server Username
+username: ''
+# FTP Server Password
+password: ''
+# FTP Server Minecraft Backup Location
+backup_folder: '/etc/mcBackup/backup/'
