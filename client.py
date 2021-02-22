@@ -3,6 +3,7 @@ from datetime import datetime
 import schedule
 import time
 import yaml
+import os
 
 # Open config file
 with open('clientConfig.yml') as f:  
@@ -16,10 +17,23 @@ with open('clientConfig.yml') as f:
 ftp = FTP(host=servip,user=uname,passwd=passwd)
 ftp.close()
 
+# Function to get current time for logging
 def current_time():
     now = datetime.now()
     time = now.strftime('%Y:%m:%d_%H:%M:%S')
     return time
+
+# Function to check if backup dir exists and if not, create one
+def create_bu_dir():
+    if(os.path.isdir('./backup/') == True):
+        print('['+str(current_time())+'] Backup Dir Exists')
+    else:
+        print('['+str(current_time())+'] Creating Backup Dir')
+        os.mkdir('./backup/')
+        if(os.path.isdir('./backup/') == True):
+            print('['+str(current_time())+'] Backup Dir Created')
+        else:
+            print('['+str(current_time())+'] Backup Dir Creation Failed')
 
 # Function to copy files from budir to ./backup
 def copy_backup():
@@ -27,7 +41,7 @@ def copy_backup():
     ftp = FTP(host=servip,user=uname,passwd=passwd)
     ftp.cwd(budir)
     files = ftp.nlst()
-    # TODO: If statment to autogenerate ./backup directory
+    create_bu_dir()
     for file in files:
         print('    - Downloading... '+file)
         if file.endswith('.tar'):
