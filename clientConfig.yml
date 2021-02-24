@@ -1,8 +1,2 @@
-# FTP Server IP
-server_ip: ''
-# FTP Server Username
-username: ''
-# FTP Server Password
-password: ''
-# FTP Server Minecraft Backup Location
-backup_folder: '/etc/mcBackup/backup/'
+backup_occurrence: 'day'
+backup_time: '00:00'

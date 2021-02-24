@@ -1,1 +1,3 @@
-mc_folder: '/etc/spigot/' #Minecraft Server Folder
+mc_folder: '/etc/spigot/'
+backup_occurrence: 'day'
+backup_time: '00:00'

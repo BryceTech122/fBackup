@@ -1,0 +1,11 @@
+server1:
+  - ip: ''
+  - username: ''
+  - password: ''
+  - backup_folder: "/etc/fBackup/backup"
+
+server2:
+  - ip: ''
+  - username: ''
+  - password: ''
+  - backup_folder: '/etc/fBackup/backup'

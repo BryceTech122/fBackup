@@ -8,10 +8,21 @@ import os
 import tarfile
 import logging
 
-# Open config file
-with open('serverConfig.yml') as f:  
-    data = yaml.load(f, Loader=yaml.FullLoader)
-    source_dir = data.get('mc_folder')
+# Initialize
+def init():
+    # Initialize logging
+    logging.basicConfig(filename='server.log',level=logging.INFO,format='%(asctime)s %(levelname)s:%(message)s')
+    logging.info('fBackup Server Started')
+    # Open config
+    with open('serverConfig.yml') as f:  
+        data = yaml.load(f, Loader=yaml.FullLoader)
+        source_dir = data.get('mc_folder')
+        backup_occurrence = data.get('backup_occurrence')
+        backup_time = data.get('backup_time')
+    # Schedule backup time
+    backup = 'schedule.every().' + backup_occurrence + '.at(\'' + backup_time + '\').do(make_tarfile, source_dir=source_dir)'
+    exec(backup)
+    logging.info('Init Complete')
 
 # Function to generate filename with .tar extenssion
 def make_filename():
@@ -50,11 +61,9 @@ def make_tarfile(source_dir):
         tar.add(source_dir, arcname=os.path.basename(source_dir))
     logging.info('Backup Complete! '+output_filename)
 
-# Initialize logging
-logging.basicConfig(filename='server.log',level=logging.INFO,format='%(asctime)s %(levelname)s:%(message)s')
-
-# Schedule zip
-schedule.every(5).minutes.at(":00").do(make_tarfile, source_dir=source_dir)
+# Initialize and backup at program start
+init()
+schedule.run_all()
 
 # Program loop
 while True:
