@@ -1,4 +1,4 @@
-# Folder Backup
+# Folder Backup 
 
 ## Prerequisites
 This guide assumes that you have a ftp server Installed on your server like vsftpd. It also assumes you are familiar with git, github, and python
