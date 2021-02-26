@@ -16,7 +16,7 @@ def init():
     # Open config
     with open('serverConfig.yml') as f:  
         data = yaml.load(f, Loader=yaml.FullLoader)
-        source_dir = data.get('mc_folder')
+        source_dir = data.get('bu_folder')
         backup_occurrence = data.get('backup_occurrence')
         backup_time = data.get('backup_time')
     # Schedule backup time

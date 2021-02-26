@@ -1,3 +1,3 @@
-mc_folder: '/etc/spigot/'
+bu_folder: ''
 backup_occurrence: 'day'
 backup_time: '00:00'
